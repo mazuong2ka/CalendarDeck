@@ -11,6 +11,9 @@ struct Parts { int y; unsigned m, d; int hour, minute, second, weekday; }; // Mo
 Parts parts(Stamp value);
 Stamp today();
 Stamp monday(Stamp date);
+int monthLength(int y, unsigned m);
+Stamp monthStart(Stamp date);
+Stamp yearStart(Stamp date);
 Stamp toLocal(Stamp utc);
 Stamp toUtc(Stamp wall, const std::string& zone); // Empty zone = Windows local.
 std::wstring wide(const std::string& utf8);
@@ -27,8 +30,9 @@ struct CalendarResult {
     std::vector<Occurrence> events;
     std::vector<std::string> warnings;
 };
-// Expands only occurrences intersecting the requested local week.
+// Expands occurrences intersecting the requested local range or week.
 // Malformed input throws; unsupported rules/timezones produce visible warnings.
+CalendarResult expandCalendarRange(const std::string& ics, Stamp rangeStart, Stamp rangeEnd);
 CalendarResult expandCalendar(const std::string& ics, Stamp week);
 struct Segment { size_t event; int day, column{}, columns{1}; Stamp start, end; };
 std::vector<Segment> layoutEvents(const std::vector<Occurrence>& events, Stamp week);

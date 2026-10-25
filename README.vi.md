@@ -21,7 +21,10 @@ Calendar Deck hiển thị lịch **Thứ Hai–Chủ Nhật**, đầy đủ khu
 
 | Tính năng | Bạn có thể làm gì? |
 | --- | --- |
-| Lịch tuần | Xem đủ 7 ngày, đánh dấu hôm nay và vạch giờ hiện tại |
+| 3 chế độ nhìn | Chuyển đổi linh hoạt giữa Tuần (Week), Tháng (Month) và Năm (Year) |
+| Lịch tuần | Xem đủ 7 ngày, đánh dấu hôm nay và vạch giờ hiện tại với thiết kế bo cong mềm mại |
+| Lịch tháng | Toàn cảnh các tuần trong tháng, hiển thị sự kiện theo ngày, nhấp để xem tuần chi tiết |
+| Lịch năm | Toàn cảnh 12 tháng với số lượng sự kiện và chấm đánh dấu ngày có lịch |
 | Nhiều lịch | Đặt tên riêng, chọn một trong 5 màu, bật/tắt hiển thị |
 | Nguồn online | Đọc Google iCal, kiểm tra tự động, giữ cache khi mất mạng |
 | File offline | Nhập ICS và thay file mới khi thời khóa biểu thay đổi |
@@ -113,8 +116,9 @@ App nhận ICS mã hóa UTF-8, gồm UTF-8 BOM, tối đa **10 MiB mỗi file**.
 
 | Thao tác | Cách thực hiện |
 | --- | --- |
-| Tuần trước / sau | Nút mũi tên hoặc phím trái / phải |
-| Tuần hiện tại | **Today** hoặc Home |
+| Chuyển Tuần / Tháng / Năm | Nút chuyển dạng viên thuốc (pill) trên toolbar, menu chuột phải hoặc Ctrl+1 / Ctrl+2 / Ctrl+3 |
+| Tuần / Tháng / Năm trước & sau | Nút mũi tên ‹ / › hoặc phím mũi tên Trái / Phải |
+| Thời gian hiện tại | **Hôm nay** hoặc phím Home |
 | Xem chi tiết sự kiện | Nhấp sự kiện; rê chuột để xem tooltip |
 | Xem sự kiện cả ngày | Nhấp dải cả ngày của ngày đó |
 | Đọc lỗi/cảnh báo nguồn lịch | Nhấp thanh trạng thái phía dưới |

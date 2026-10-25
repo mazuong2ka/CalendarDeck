@@ -14,9 +14,15 @@ void tests(){
     Stamp week=civil(2026,10,19);
     check(monday(civil(2026,10,25))==week,"Monday week boundary");
     check(parts(civil(2024,2,29)).d==29,"Leap day");
+    check(monthLength(2024,2)==29,"Leap year February length");
+    check(monthLength(2026,2)==28,"Non-leap year February length");
+    check(monthLength(2026,10)==31,"October month length");
+    check(monthStart(civil(2026,10,25))==civil(2026,10,1),"Month start calculation");
+    check(yearStart(civil(2026,10,25))==civil(2026,1,1),"Year start calculation");
     auto repeated=event("UID:a\r\nDTSTART:20261019T090000\r\nDTEND:20261019T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=6\r\nEXDATE:20261021T090000\r\nSUMMARY:Tiếng Việt\\, title\r\n folded\r\n");
     auto r=expandCalendar(wrap(repeated),week);
     check(r.events.size()==2,"Weekly recurrence and EXDATE");check(r.events.front().title=="Tiếng Việt, titlefolded","UTF-8 text and folding");
+    check(expandCalendarRange(wrap(repeated),civil(2026,10,1),civil(2026,11,1)).events.size()==5,"expandCalendarRange expands monthly occurrences");
     check(expandCalendar(wrap(repeated),week+7*daySeconds).events.size()==3,"COUNT spans weeks");
     check(expandCalendar(wrap(repeated),week+14*daySeconds).events.empty(),"COUNT termination");
     auto canceled=event("UID:a\r\nRECURRENCE-ID:20261023T090000\r\nSTATUS:CANCELLED\r\n");

@@ -264,9 +264,24 @@ std::filesystem::path dataDirectory(bool portable){wchar_t path[32768]{};
     std::filesystem::path result=std::filesystem::path(local)/L"CalendarDeck";CoTaskMemFree(local);return result;
 }
 std::string demoCalendar(Stamp week){auto date=[](Stamp t){auto p=parts(t);char b[32];snprintf(b,sizeof(b),"%04d%02u%02uT%02d%02d%02d",p.y,p.m,p.d,p.hour,p.minute,p.second);return std::string(b);};
+    auto base=monday(week);
     std::string s="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Calendar Deck//Demo//EN\r\n";
-    auto event=[&](const char* id,const char* title,int day,int hour,int minute,int length){Stamp t=week+day*daySeconds+hour*3600+minute*60;s+="BEGIN:VEVENT\r\nUID:"+std::string(id)+"\r\nDTSTART:"+date(t)+"\r\nDTEND:"+date(t+length*60)+"\r\nSUMMARY:"+title+"\r\nEND:VEVENT\r\n";};
-    event("demo-focus","Deep work",0,9,0,120);event("demo-review","Project review",1,14,0,90);event("demo-build","Build something",2,10,0,120);event("demo-team","Team catch-up",2,10,30,45);event("demo-reading","Reading",3,20,0,60);event("demo-wrap","Weekly review",4,16,0,60);event("demo-outside","A little time outside",5,8,0,120);
-    auto p=parts(week);char b[20];snprintf(b,sizeof(b),"%04d%02u%02u",p.y,p.m,p.d);s+="BEGIN:VEVENT\r\nUID:demo-all\r\nDTSTART;VALUE=DATE:"+std::string(b)+"\r\nSUMMARY:A fresh week\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n";return s;
+    auto event=[&](const char* id,const char* title,int day,int hour,int minute,int length,const char* rule=""){
+        Stamp t=base+day*daySeconds+hour*3600+minute*60;
+        s+="BEGIN:VEVENT\r\nUID:"+std::string(id)+"\r\nDTSTART:"+date(t)+"\r\nDTEND:"+date(t+length*60)+"\r\nSUMMARY:"+title+"\r\n";
+        if(rule&&*rule)s+="RRULE:"+std::string(rule)+"\r\n";
+        s+="END:VEVENT\r\n";
+    };
+    event("demo-focus","Deep work",0,9,0,120,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-review","Project review",1,14,0,90,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-build","Build something",2,10,0,120,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-team","Team catch-up",2,10,30,45,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-reading","Reading & Research",3,20,0,60,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-wrap","Weekly review",4,16,0,60,"FREQ=WEEKLY;INTERVAL=1");
+    event("demo-outside","Outdoor activities",5,8,0,120,"FREQ=WEEKLY;INTERVAL=1");
+    auto p=parts(base);char b[20];snprintf(b,sizeof(b),"%04d%02u%02u",p.y,p.m,p.d);
+    s+="BEGIN:VEVENT\r\nUID:demo-all\r\nDTSTART;VALUE=DATE:"+std::string(b)+"\r\nSUMMARY:Weekly Goal Kickoff\r\nRRULE:FREQ=WEEKLY;INTERVAL=1\r\nEND:VEVENT\r\n";
+    s+="END:VCALENDAR\r\n";
+    return s;
 }
 }

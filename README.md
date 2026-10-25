@@ -21,7 +21,10 @@ Built with **C++20, Win32, Direct2D and DirectWrite**. No Electron, embedded bro
 
 | Feature | What you get |
 | --- | --- |
-| Weekly view | All seven days, current-day highlight and a live current-time marker |
+| 3 View Modes | Seamlessly toggle between Week, Month, and Year views |
+| Weekly view | All seven days, current-day highlight and live time marker with modern curved cards |
+| Monthly view | 6-week full month grid with daily event chips and direct navigation |
+| Yearly view | 12 mini-month grid with event indicators and quick jump |
 | Multiple calendars | Separate names, five colors, visibility and source status |
 | Online sources | Read-only Google iCal feeds with automatic checks and offline cache |
 | Offline imports | Import an ICS file; replace it when the timetable changes |
@@ -113,8 +116,9 @@ Imports accept UTF-8 ICS files, including a UTF-8 BOM, up to **10 MiB per file**
 
 | Action | How |
 | --- | --- |
-| Previous / next week | Arrow buttons or Left / Right keys |
-| Current week | **Today** or Home |
+| Switch Week / Month / Year | Pill switcher on toolbar, context menu, or Ctrl+1 / Ctrl+2 / Ctrl+3 |
+| Previous / next period | Arrow buttons ‹ / › or Left / Right keys |
+| Current period | **Today** button or Home key |
 | Read event details | Click an event; hover for a tooltip |
 | See all-day events | Click the all-day strip for that day |
 | Inspect source errors/warnings | Click the status bar at the bottom |

@@ -41,6 +41,8 @@ static SYSTEMTIME systemTime(Stamp t) {
 static Stamp stamp(const SYSTEMTIME& s) { return civil(s.wYear,s.wMonth,s.wDay,s.wHour,s.wMinute,s.wSecond); }
 Stamp today() { SYSTEMTIME s{}; GetLocalTime(&s); return civil(s.wYear,s.wMonth,s.wDay); }
 Stamp monday(Stamp t) { auto p=parts(t); return civil(p.y,p.m,p.d)-p.weekday*daySeconds; }
+Stamp monthStart(Stamp t) { auto p=parts(t); return civil(p.y,p.m,1); }
+Stamp yearStart(Stamp t) { auto p=parts(t); return civil(p.y,1,1); }
 Stamp toLocal(Stamp t) {
     auto u=systemTime(t); SYSTEMTIME l{};
     if(!SystemTimeToTzSpecificLocalTimeEx(nullptr,&u,&l)) throw std::runtime_error("Cannot convert local time");
@@ -153,7 +155,7 @@ static Rule rule(const std::string& s) {
     for(auto [ord,wd]:r.weekdays){(void)wd;if(ord&&(r.freq=="DAILY"||r.freq=="WEEKLY"))throw std::runtime_error("Ordinal BYDAY requires monthly/yearly recurrence");if(ord&&(ord< -5||ord>5||(r.freq=="YEARLY"&&r.months.empty())))throw std::runtime_error("Unsupported yearly BYDAY ordinal");}
     return r;
 }
-static int monthLength(int y,unsigned m) {return int(unsigned(year_month_day_last{year{y},month_day_last{month{m}}}.day()));}
+int monthLength(int y,unsigned m) {return int(unsigned(year_month_day_last{year{y},month_day_last{month{m}}}.day()));}
 static bool contains(const std::vector<int>& v,int x) {return std::find(v.begin(),v.end(),x)!=v.end();}
 static bool matches(const Rule& r,Stamp date,Stamp start) {
     auto p=parts(date),a=parts(start);int days=int((date-start)/daySeconds),months=(p.y-a.y)*12+int(p.m)-int(a.m);
@@ -172,25 +174,22 @@ static bool matches(const Rule& r,Stamp date,Stamp start) {
     if(r.freq=="YEARLY"&&r.months.empty()&&r.monthdays.empty()&&r.weekdays.empty()&&p.m!=a.m)return false;
     return true;
 }
-static std::vector<Value> recurrence(const Event& e,Stamp week,size_t& work) {
+static std::vector<Value> recurrence(const Event& e,Stamp rangeStart,Stamp rangeEnd,size_t& work) {
     std::vector<Value> out{e.start};if(e.rule.empty()){out.insert(out.end(),e.include.begin(),e.include.end());return out;}
     auto r=rule(e.rule);auto p=parts(e.start.wall);Stamp first=civil(p.y,p.m,p.d),clock=e.start.wall-first;
     // Keep one recurrence period at a time, not the entire historical series.
-    // Expand complete periods so BYSETPOS is evaluated before trimming to the week.
-    Stamp lower=week-std::max<Stamp>(0,e.end.wall-e.start.wall)-3*daySeconds;
+    // Expand complete periods so BYSETPOS is evaluated before trimming to the range.
+    Stamp lower=rangeStart-std::max<Stamp>(0,e.end.wall-e.start.wall)-3*daySeconds;
     auto periodStart=[&](Stamp d){
         auto q=parts(d);
         if(r.freq=="YEARLY")return civil(q.y,1,1);
         if(r.freq=="MONTHLY")return civil(q.y,q.m,1);
-        // The search lower bound includes event duration and is usually not at
-        // midnight. Recurrence dates must be midnight before adding DTSTART's
-        // clock; otherwise that residual time shifts every daily/weekly event.
         Stamp date=civil(q.y,q.m,q.d);
         if(r.freq=="WEEKLY")return date-((q.weekday-r.wkst+7)%7)*daySeconds;
         return date;
     };
     Stamp from=r.count?first:std::max(first,periodStart(lower));
-    Stamp limit=periodStart(week+9*daySeconds);auto endParts=parts(limit);
+    Stamp limit=periodStart(rangeEnd+2*daySeconds);auto endParts=parts(limit);
     if(r.freq=="YEARLY")limit=civil(endParts.y+1,1,1)-daySeconds;
     else if(r.freq=="MONTHLY")limit=civil(endParts.y,endParts.m,unsigned(monthLength(endParts.y,endParts.m)));
     else if(r.freq=="WEEKLY")limit+=6*daySeconds;
@@ -218,7 +217,7 @@ static std::vector<Value> recurrence(const Event& e,Stamp week,size_t& work) {
     if(e.start.wall>=lower && std::none_of(out.begin(),out.end(),[&](const Value& v){return v.wall==e.start.wall;}))out.insert(out.begin(),e.start);
     out.insert(out.end(),e.include.begin(),e.include.end());return out;
 }
-CalendarResult expandCalendar(const std::string& input,Stamp week) {
+CalendarResult expandCalendarRange(const std::string& input,Stamp rangeStart,Stamp rangeEnd) {
     if(input.size()>10*1024*1024)throw std::runtime_error("Calendar exceeds 10 MiB");
     std::string data=input;if(data.starts_with("\xef\xbb\xbf"))data.erase(0,3);
     // Validate without allocating a second copy of the whole calendar as UTF-16.
@@ -269,13 +268,13 @@ CalendarResult expandCalendar(const std::string& input,Stamp week) {
         Value end=ev.end;end.wall+=at.wall-ev.start.wall;
         Stamp begin=at.date?at.wall:toLocal(absolute(at));Stamp finish=end.date?end.wall:toLocal(absolute(end));
         if(finish<begin)finish=begin; // Repeated fall-back wall time is rendered as an instantaneous event.
-        if(begin<week+7*daySeconds && (finish>week || (finish==begin&&begin>=week)))
+        if(begin<rangeEnd && (finish>rangeStart || (finish==begin&&begin>=rangeStart)))
             result.events.push_back({ev.uid,ev.title.empty()?"(Untitled)":ev.title,ev.location,ev.description,begin,finish,at.date,0,{}});
     };
     size_t work=0;
     for(auto& [uid,ev]:masters)try{
         if(ev.status=="CANCELLED")continue;
-        auto instances=recurrence(ev,week,work);std::set<Stamp> seen;
+        auto instances=recurrence(ev,rangeStart,rangeEnd,work);std::set<Stamp> seen;
         for(auto at:instances){auto key=absolute(at);if(!seen.insert(key).second)continue;
             if(overrides.contains({uid,key}))continue;
             if(std::any_of(ev.exclude.begin(),ev.exclude.end(),[&](const Value& x){return absolute(x)==key;}))continue;
@@ -285,8 +284,11 @@ CalendarResult expandCalendar(const std::string& input,Stamp week) {
     for(auto& [key,ev]:overrides)try{(void)key;if(ev.range)throw std::runtime_error("RECURRENCE-ID RANGE is unsupported; series may be incomplete");emit(ev,ev.start);}catch(const std::exception& ex){result.warnings.push_back(ex.what());}
     std::sort(result.events.begin(),result.events.end(),[](const auto& a,const auto& b){return std::tie(a.start,a.end,a.uid)<std::tie(b.start,b.end,b.uid);});
     std::sort(result.warnings.begin(),result.warnings.end());result.warnings.erase(std::unique(result.warnings.begin(),result.warnings.end()),result.warnings.end());
-    if(result.events.size()>10000)throw std::runtime_error("Week exceeds 10000 occurrences");
+    if(result.events.size()>50000)throw std::runtime_error("Range exceeds 50000 occurrences");
     return result;
+}
+CalendarResult expandCalendar(const std::string& input,Stamp week) {
+    return expandCalendarRange(input,week,week+7*daySeconds);
 }
 std::vector<Segment> layoutEvents(const std::vector<Occurrence>& events,Stamp week) {
     std::vector<Segment> out;
