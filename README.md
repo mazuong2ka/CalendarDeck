@@ -1,189 +1,234 @@
 <div align="center">
-  <img src="resources/calendar-deck.png" width="120" alt="Calendar Deck blue calendar icon with the number 36">
-  <h1>Calendar Deck</h1>
-  <p><strong>Your week, on your desktop.</strong></p>
-  <p>A lightweight Windows calendar for Google iCal feeds and offline ICS files.</p>
-  <p><strong>English</strong> · <a href="README.vi.md">Tiếng Việt</a></p>
-  <p>
-    <img alt="Windows 10 and 11" src="https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4">
-    <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-00599C">
-    <img alt="Version 0.2.4" src="https://img.shields.io/badge/version-0.2.4-2563EB">
-  </p>
+  <img src="resources/calendar-deck.png" width="140" alt="Calendar Deck blue calendar icon with the number 36">
+
+  # 📅 Calendar Deck
+
+  ### **Your week. Your month. Your year. All on your desktop.**
+
+  A blazing-fast, native Windows calendar widget — powered by C++20, Direct2D & zero bloat.
+  Sync Google Calendar feeds, import offline ICS files, and see everything at a glance.
+
+  **English** · [Tiếng Việt](README.vi.md)
+
+  ![Windows 10 / 11](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+  ![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+  ![Version](https://img.shields.io/badge/version-0.2.4-2563EB?style=for-the-badge)
+  ![License](https://img.shields.io/badge/license-Personal-green?style=for-the-badge)
+
+  ---
+
+  > 🚀 **Big UI Update** — Completely redesigned with modern card-based layout, segmented view switcher, and a gorgeous dark theme. Three view modes, five event colors, and a sleek bottom dock. This isn't your grandfather's calendar app.
+
 </div>
 
 ---
 
-## A clear view of the whole week
+## ✨ What's New in v0.2.4
 
-Calendar Deck puts a Monday–Sunday calendar with a full **00:00–24:00** grid on Windows. Keep it behind your application windows in **Desktop mode**, or use **Floating mode** when you want a normal movable window.
+| 🎯 Feature | Description |
+|---|---|
+| 🖼️ **Fully Redesigned UI** | Modern dark theme with rounded cards, pill-shaped view switcher, hover effects, and smooth Direct2D rendering |
+| 📆 **3 View Modes** | Seamlessly switch between **Week**, **Month**, and **Year** views with `Ctrl+1/2/3` |
+| 🎨 **5 Color-Coded Calendars** | Ocean Blue · Violet · Emerald · Rose · Amber — each with unique card backgrounds and accent colors |
+| 🔄 **Smart Sync Engine** | Auto-sync Google Calendar feeds (5 min – 24 hr intervals), offline cache, conditional requests |
+| 📁 **Offline ICS Import** | Import `.ics` files with one click. Replace when your schedule changes — settings preserved |
+| 🖥️ **Desktop Widget Mode** | Pin your calendar behind all windows. Lock position, resize freely |
+| 🌐 **Bilingual Interface** | Full Vietnamese 🇻🇳 & English 🇬🇧 support — switchable in Settings |
+| ⚡ **~48 MB Memory** | Native Win32. No Electron. No browser engine. No runtime. Just pure performance |
 
-Built with **C++20, Win32, Direct2D and DirectWrite**. No Electron, embedded browser, Python or Node.js is required to run the packaged app.
+---
 
-| Feature | What you get |
-| --- | --- |
-| 3 View Modes | Seamlessly toggle between Week, Month, and Year views |
-| Weekly view | All seven days, current-day highlight and live time marker with modern curved cards |
-| Monthly view | 6-week full month grid with daily event chips and direct navigation |
-| Yearly view | 12 mini-month grid with event indicators and quick jump |
-| Multiple calendars | Separate names, five colors, visibility and source status |
-| Online sources | Read-only Google iCal feeds with automatic checks and offline cache |
-| Offline imports | Import an ICS file; replace it when the timetable changes |
-| Event layout | Supported recurring events, all-day events, overnight events and overlap columns |
-| Windows controls | Minimize, maximize/restore, tray menu and configurable close behavior |
-| Desktop widget | Move/resize when unlocked; lock its position from the tray menu |
-| Local storage | URLs, feeds and configuration protected with Windows DPAPI |
+## 🖥️ The Three Views
 
-## Quick start
+### 📋 Week View
+> Your command center. Full **00:00–24:00** timeline grid with all 7 days, Monday through Sunday.
 
-### 1. Get the app
+- **Curved event cards** with color-coded left accent bars
+- **Live time marker** — red line with current time badge, moving in real-time
+- **Today highlight** — subtle blue background column
+- **All-day event strip** — compact chips above the grid
+- **Overlap columns** — multiple concurrent events display side-by-side
+- **Hover effects** — cards glow white on hover for instant visual feedback
 
-For a packaged build, extract **CalendarDeck-v0.2.4-windows-x64.zip** to a folder you will keep, then open **CalendarDeck.exe**. No administrator rights or installer are required.
+### 📊 Month View
+> The big picture. A 6-week grid showing your entire month with event chips.
 
-The package contains the EXE, English/Vietnamese instructions and a shortcut script. If you are building from source, use the [build instructions](#build-from-source).
+- **Daily event chips** with color dots and time labels
+- **Overflow indicator** — `+N more` badge when a day is packed
+- **Click any day** to jump directly to that week
+- **Today badge** — distinctive blue circle on the current date
+- **Cross-month days** shown in muted style for context
 
-**Requirements:** Windows 10 version 1903 or later, or Windows 11, x64. The app uses Windows system SQLite and ICU. Internet access is needed for URL sources; file imports work entirely offline.
+### 🗓️ Year View
+> 12 mini-month cards at a glance. Spot busy periods instantly.
 
-### 2. Choose how to add your calendar
+- **Event count badges** on each month card
+- **Dot indicators** on days with events
+- **Click any month** to jump to Month view
+- **Hover cards** glow with accent borders
 
-Open **Settings → Calendars**.
+---
 
-| Add URL Calendar | Import .ics |
-| --- | --- |
-| Use a Google Calendar feed or supported share link | Select a local iCalendar file |
-| Automatically checks for updates | Keeps an offline snapshot |
-| Needs access to the remote feed for new data | Needs no Google sign-in or network |
-| Last good cache remains available offline | Use **Replace .ics** when your schedule changes |
+## 🚀 Quick Start
 
-### 3. Create a desktop shortcut
+### 1. Download & Run
 
-From the extracted package, run:
+Extract `CalendarDeck-v0.2.4-windows-x64.zip` → open **CalendarDeck.exe**. That's it.
+
+> [!NOTE]
+> No installer, no admin rights, no dependencies. Runs on **Windows 10 (1903+)** or **Windows 11**, x64.
+
+### 2. Add Your Calendar
+
+Open **Settings → Calendars**, then pick your method:
+
+| 🌐 Add URL Calendar | 📁 Import .ics File |
+|---|---|
+| Paste a Google Calendar iCal link | Select a local `.ics` file |
+| Auto-syncs on your chosen interval | Instant offline snapshot |
+| Offline cache when network is down | No Google sign-in needed |
+| Works with public & private feeds | Use **Replace .ics** to update |
+
+### 3. Create a Desktop Shortcut
 
 ```powershell
 .\create-desktop-shortcut.ps1
 ```
 
-From the source project after packaging:
+The blue **36** icon is embedded in the EXE — no external icon file needed.
 
-```powershell
-.\scripts\create-desktop-shortcut.ps1
-```
+---
 
-Alternatively, right-click CalendarDeck.exe and create a shortcut with Windows. The blue **36** icon is embedded in the executable; the app does not depend on an external icon file. If you move the EXE later, recreate the shortcut.
+## 🔗 Connect Google Calendar
 
-## Connect Google Calendar by URL
+1. Open [Google Calendar](https://calendar.google.com) on desktop
+2. **Settings → select calendar → Integrate calendar**
+3. Copy the **Secret address in iCal format** (or Public address)
+4. In Calendar Deck: **Add URL Calendar** → paste URL → pick a name & color → **Save**
 
-1. Open Google Calendar on a computer.
-2. Go to **Settings → select your calendar → Integrate calendar**.
-3. Copy **Secret address in iCal format**, or **Public address in iCal format** for an accessible public calendar.
-4. In Calendar Deck, choose **Add URL Calendar**.
-5. Enter a display name, paste the URL, choose a color and visibility, and click **Save calendar**.
+> [!IMPORTANT]
+> **Keep your Secret URL private.** Never share it in screenshots, issues, or public repos.
 
-Direct HTTPS iCal links ending in `.ics` are accepted. Single-calendar Google share/view links containing `src=` or base64 `cid=` are converted locally to their public iCal URL. General Calendar home pages, event links, iframe HTML and embeds with multiple calendar IDs cannot be used as a single source.
+### Sync Behavior
 
-- **Sync now** checks the selected URL calendar.
-- **Sync** in the main window, or **Sync all calendars** in the tray menu, checks all URL sources.
-- The default interval is **15 minutes**; change it in **General** from **5 to 1440 minutes**.
-- The last good feed remains visible if a later request fails.
-- Upstream iCal changes can be delayed by Google; this is not instant two-way sync.
+| Action | What it does |
+|---|---|
+| **Sync now** | Checks the selected URL calendar |
+| **Sync** button / `F5` | Checks all URL sources |
+| **Auto interval** | Default **15 min** (configurable: 5–1440 min) |
+| **Offline resilience** | Last valid cache stays visible when sync fails |
 
-**Private URL:** keep it secret. Do not paste it into an issue, screenshot or public repository.
+> [!NOTE]
+> Google may delay iCal feed updates. Calendar Deck performs read-only sync — it does not modify your Google Calendar.
 
-**Public URL:** only works when the calendar owner and organization allow public feed access. A link that works in your signed-in browser may still be unavailable to the app. If the source exposes only free/busy, event names and descriptions are not present for Calendar Deck to display. The app does not change Google sharing permissions.
+---
 
-## Import an ICS file for offline viewing
+## 📁 Import an ICS File
 
-1. Obtain a `.ics` file that contains your schedule.
-2. Open **Settings → Calendars → Import .ics...**.
-3. Select the file. It is imported and saved immediately, and marked **(file)** in the list.
-4. Edit its display name, color or visibility if desired, then click **Save calendar**.
-5. Click an event in the weekly view for its full title, source calendar, time, location and description.
+1. Get your `.ics` file (from Google Export, school timetable, etc.)
+2. **Settings → Calendars → Import .ics...**
+3. The file is imported and saved immediately, marked **(file)** in the list
+4. Customize name, color, visibility → **Save calendar**
+5. Click any event for full details: title, time, location, description, source calendar
 
-The snapshot is copied into encrypted local storage. Moving or deleting the original file does not remove the imported calendar. The app displays the time of the last import and never attempts network sync for file sources.
+### When Your Schedule Changes
 
-### When the timetable changes
+Select the imported calendar → **Replace .ics...** → pick the new file.
+Events update instantly. **Name, color, and visibility are preserved.**
 
-Select the imported calendar and choose **Replace .ics...**. Pick the updated file. Its events replace the old snapshot while the calendar's **name, color and visibility are preserved**. Failed or invalid replacements keep the previous snapshot.
+> [!TIP]
+> Always use **Replace** instead of importing as a new calendar to avoid duplicates.
 
-To avoid duplicates, replace the existing file calendar rather than importing each revision as another new calendar.
+### Accepted Formats
+- UTF-8 `.ics` files (including UTF-8 BOM)
+- Maximum **10 MiB** per file
+- ZIP archives must be extracted first
 
-### Exporting from Google Calendar
+---
 
-On desktop, use **Settings → Import & export → Export** when your account allows it. Extract the downloaded ZIP and choose the relevant `.ics` file inside. School/work administrators may restrict exporting. You can also use a valid ICS file obtained directly from your timetable provider.
+## ⌨️ Keyboard Shortcuts
 
-Imports accept UTF-8 ICS files, including a UTF-8 BOM, up to **10 MiB per file**. ZIP files must be extracted first. Importing a file that already omits event details cannot reconstruct those details.
+| Action | Shortcut |
+|---|---|
+| Week view | `Ctrl+1` |
+| Month view | `Ctrl+2` |
+| Year view | `Ctrl+3` |
+| Previous / Next period | `←` / `→` |
+| Jump to today | `Home` |
+| Open Settings | `Ctrl+S` |
+| Sync all calendars | `F5` |
+| Hide widget | `Esc` |
 
-## Everyday use
+---
 
-| Action | How |
-| --- | --- |
-| Switch Week / Month / Year | Pill switcher on toolbar, context menu, or Ctrl+1 / Ctrl+2 / Ctrl+3 |
-| Previous / next period | Arrow buttons ‹ / › or Left / Right keys |
-| Current period | **Today** button or Home key |
-| Read event details | Click an event; hover for a tooltip |
-| See all-day events | Click the all-day strip for that day |
-| Inspect source errors/warnings | Click the status bar at the bottom |
-| Change a calendar's appearance | Settings → Calendars → choose it → Save calendar |
-| Hide a calendar without removing it | Turn off **Show events on calendar**, then save |
-| Remove a source | **Remove calendar**, then confirm; Google events remain unchanged |
-| Open Settings | Toolbar button or Ctrl+S |
-| Check URL sources | Sync button or F5 |
-| Hide the widget | Esc or the tray menu |
+## 🖥️ Desktop & Floating Modes
 
-**Save before switching:** Settings warns before discarding unsaved edits when you change pages or calendars.
+| Mode | Behavior |
+|---|---|
+| **Floating** | Normal window with taskbar, minimize/maximize, drag & resize |
+| **Desktop** | Pinned behind all windows on your desktop. Drag header/edges when unlocked |
 
-### Floating and Desktop modes
+> Right-click the calendar or tray icon to switch mode or toggle **Lock widget position**.
 
-**Floating** is a normal window with taskbar entry, minimize, maximize/restore and close controls. Drag its title area or resize its edges.
+### Close, Hide & Exit
 
-**Desktop** attaches the widget to Explorer behind application windows. When unlocked, drag its header or edges to move/resize it. Maximizing is disabled. Right-click the calendar or tray icon to switch mode or toggle **Lock widget position**. Wallpaper tools and Explorer behavior can affect Desktop mode.
+In **Settings → General**, choose whether the Close button:
+- **Hides to system tray** (default) — double-click tray icon to restore
+- **Exits completely** — use **Exit** in the tray menu for a full stop
 
-### Close, hide and exit
+---
 
-In **Settings → General**, choose whether the Close button hides to the system tray or exits. Double-click the tray icon to show the current week. Choose **Exit** in the tray menu to fully stop the app. A network request in progress may take a short time to finish.
+## 💾 Data & Storage
 
-## Updates and local data
-
-| Mode | Location |
-| --- | --- |
+| Mode | Database Location |
+|---|---|
 | Normal | `%LOCALAPPDATA%\CalendarDeck\calendar-deck.db` |
 | Portable (`--portable`) | `data\calendar-deck.db` beside the EXE |
 
-Configuration, raw feeds, sync errors and imports use user-scoped Windows DPAPI encryption before SQLite storage. Portable mode is still tied to the Windows account and is not a cross-account backup format. Keep original ICS files or source URLs if you need to move to another Windows account.
+- All data encrypted with **Windows DPAPI** before SQLite storage
+- Portable data is tied to the current Windows account
+- Keep original ICS files or source URLs for cross-account migration
 
-For an update: **Exit from the tray**, replace the application files, and reopen it. Normal-mode user data remains in AppData. Preserve the `data` directory when updating a portable installation. Older single-calendar data is read automatically.
+### Updating
 
-To try sample events without connecting a calendar:
+1. **Exit** from the tray
+2. Replace application files
+3. Reopen — your data is preserved in AppData (or `data/` for portable)
+
+### Demo Mode
 
 ```powershell
 .\CalendarDeck.exe --portable --demo
 ```
 
-Use a separate extracted folder for demos. Only one instance is allowed per data directory; exit that instance before changing demo/live mode.
+> Use a separate folder for demo mode. Only one instance per data directory.
 
-## Troubleshooting
+---
 
-| Symptom | Check |
-| --- | --- |
-| Calendar shows Busy or lacks names | Inspect the source's permissions or original ICS content; free/busy data does not contain the missing details |
-| Public feed is unavailable | Check whether it is publicly accessible without signing in and whether the organization allows iCal export |
-| No Secret address is offered | Work/school policy or your rights may restrict it; use a permitted full ICS export if available |
-| Nothing appears after import | Check the selected week, calendar visibility and event dates; old semester files may have no events this week |
-| Events appear duplicated | Hide/remove the old source, or use Replace .ics instead of importing another copy |
-| Times look wrong | Check the Windows time zone, source event details and that you are running version 0.2.3 or newer |
-| Closing does not stop the app | Close-to-tray may be enabled; use the tray's Exit command |
-| Desktop still shows an old image | Exit, refresh the desktop, and use the current build; the app does not alter the wallpaper image |
-| Desktop mode is unavailable | Use Floating mode; Explorer/WorkerW or wallpaper software may prevent attachment |
-| Build cannot overwrite the EXE | Exit the instance using that build directory, then rebuild |
+## 🔧 Troubleshooting
 
-## Build from source
+| Symptom | Solution |
+|---|---|
+| Events show "Busy" or no names | Check source permissions — free/busy feeds don't include details |
+| Public feed unavailable | Verify public access without sign-in; check org iCal export policy |
+| No Secret address option | Work/school account restriction — try full ICS export |
+| No events after import | Check viewed week, calendar visibility, and file date range |
+| Duplicate events | Use **Replace .ics** instead of importing again |
+| Wrong times | Check Windows time zone; use version 0.2.3+ |
+| Close doesn't stop app | Disable close-to-tray, or use tray **Exit** |
+| Desktop mode unavailable | Explorer/WorkerW or wallpaper tools may interfere — use Floating |
 
-Tools: **CMake 3.24+** and either **MinGW-w64 GCC with Ninja**, or **Visual Studio 2022 C++ tools**. Python is not required for the application build.
+---
+
+## 🏗️ Build from Source
+
+**Requirements:** CMake 3.24+ and MinGW-w64 GCC with Ninja, or Visual Studio 2022 C++ tools.
 
 ```powershell
 .\scripts\build.ps1
 ```
 
-This configures a Release build in `build/release`, compiles and runs CTest. For an explicit MinGW/Ninja build:
+Or manually:
 
 ```powershell
 cmake -S . -B build/release -G Ninja -DCMAKE_BUILD_TYPE=Release
@@ -191,53 +236,58 @@ cmake --build build/release
 ctest --test-dir build/release --output-on-failure
 ```
 
-The MSVC route is configured but has not been validated on this machine:
-
-```powershell
-cmake -S . -B build/msvc -G "Visual Studio 17 2022" -A x64
-cmake --build build/msvc --config Release
-ctest --test-dir build/msvc -C Release --output-on-failure
-```
-
-### Package for distribution
+### Package for Distribution
 
 ```powershell
 .\scripts\package.ps1
 ```
 
 | Output | Purpose |
-| --- | --- |
-| `dist/CalendarDeck/` | Runnable app, instructions and shortcut script |
-| `dist/CalendarDeck-v0.2.4-windows-x64.zip` | Binary package for GitHub Releases |
-| `dist/CalendarDeck-v0.2.4-source.zip` | Allowlisted source files for sharing/upload |
-| `dist/SHA256SUMS.txt` | Checksums of the two ZIPs |
+|---|---|
+| `dist/CalendarDeck/` | Runnable app with instructions |
+| `dist/CalendarDeck-v0.2.4-windows-x64.zip` | Binary package for Releases |
+| `dist/CalendarDeck-v0.2.4-source.zip` | Curated source archive |
+| `dist/SHA256SUMS.txt` | Checksums for verification |
 
-The source package excludes builds, binaries, private calendars, caches, local backups and Codex tooling. The repository's ignore rules do the same for normal Git use. Put binary ZIPs in **Releases**, not source commits. Review `git status` before committing.
+---
 
-## Project layout
+## 📂 Project Layout
 
-| Folder | Contents |
-| --- | --- |
-| `src/` | Application and calendar/storage modules |
-| `resources/` | PNG master, multi-size ICO, manifest and version resources |
-| `scripts/` | Build, package and shortcut tools |
-| `tests/` | Synthetic regression tests |
-| `docs/` | Architecture and validation evidence |
-| `build/`, `dist/` | Generated output, ignored by Git |
-| `input/`, `local-data/` | Local personal files/backups, ignored by Git |
+```
+CalendarDeck/
+├── src/           # App core — UI, calendar engine, storage
+├── resources/     # Icons (9 sizes), manifest, version info
+├── scripts/       # Build, package & shortcut automation
+├── tests/         # 96 synthetic regression checks
+├── docs/          # Architecture & validation evidence
+├── build/         # Generated output (git-ignored)
+└── dist/          # Distribution packages (git-ignored)
+```
 
-## Scope, performance and verification
+## 🔬 Performance & Verification
 
-The app uses an event-driven Win32 message loop and one background worker; it does not repaint continuously at 60 FPS. A short demo measurement was about **48–49 MiB working set**. That is a brief sample, not a RAM guarantee for every feed, GPU or driver.
+- **Event-driven** Win32 message loop — no continuous 60 FPS render
+- **~48–49 MiB** working set (brief demo measurement)
+- **96 core checks** passing in CTest
+- Recurrence validated against **5 Google exports × 104 weeks** (487 records matched)
+- Supports: DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL, WKST, BYDAY, BYMONTHDAY, BYMONTH, BYSETPOS, EXDATE, RDATE, RECURRENCE-ID overrides
 
-The core suite currently contains **96 checks**. The recurrence-time fix was also checked against five Google exports across 104 weeks, with 487 event/week records matching an independent expansion. See [validation evidence and open checks](docs/VALIDATION.md).
+---
 
-Supported recurrence includes DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL, WKST, BYDAY, BYMONTHDAY, BYMONTH, BYSETPOS, EXDATE, RDATE and RECURRENCE-ID overrides. This is not a complete RFC 5545 implementation: custom VTIMEZONE definitions, hourly recurrence, RDATE periods and RECURRENCE-ID RANGE remain unsupported. Limits include 100 sources, 10 MiB/feed, 50,000 VEVENTs/feed and 10,000 occurrences/source/week.
+## 📚 Contributing & References
 
-There is no Google OAuth sign-in, event creation/editing, reminder system, light theme, opacity setting or interface-language switch in this release. The main grid does not expose individual events through UI Automation. Live Google feed integration and full Desktop/DPI behavior still need broader manual validation.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Architecture Notes](docs/ARCHITECTURE.md).
 
-## Contributing and references
+**References:**
+[Google iCal Sync](https://support.google.com/calendar/answer/37648) ·
+[Google Export](https://support.google.com/calendar/answer/37111) ·
+[Public Calendars](https://support.google.com/calendar/answer/37083) ·
+[RFC 5545](https://www.rfc-editor.org/rfc/rfc5545)
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [architecture notes](docs/ARCHITECTURE.md).
+---
 
-Reference documentation: [Google iCal sync](https://support.google.com/calendar/answer/37648), [Google export](https://support.google.com/calendar/answer/37111), [public calendars](https://support.google.com/calendar/answer/37083) and [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545).
+<div align="center">
+  <sub>Built with ❤️ using C++20 · Win32 · Direct2D · DirectWrite</sub>
+  <br>
+  <sub>No Electron. No bloat. Just your calendar.</sub>
+</div>

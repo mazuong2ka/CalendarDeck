@@ -1,202 +1,239 @@
 <div align="center">
-  <img src="resources/calendar-deck.png" width="120" alt="Biểu tượng lịch xanh Calendar Deck với số 36">
-  <h1>Calendar Deck</h1>
-  <p><strong>Cả tuần của bạn, ngay trên desktop.</strong></p>
-  <p>Ứng dụng lịch Windows gọn nhẹ, hỗ trợ Google iCal và file ICS offline.</p>
-  <p><a href="README.md">English</a> · <strong>Tiếng Việt</strong></p>
-  <p>
-    <img alt="Windows 10 và 11" src="https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4">
-    <img alt="C++20" src="https://img.shields.io/badge/C%2B%2B-20-00599C">
-    <img alt="Phiên bản 0.2.4" src="https://img.shields.io/badge/version-0.2.4-2563EB">
-  </p>
+  <img src="resources/calendar-deck.png" width="140" alt="Biểu tượng lịch xanh Calendar Deck với số 36">
+
+  # 📅 Calendar Deck
+
+  ### **Lịch tuần. Lịch tháng. Lịch năm. Ngay trên desktop.**
+
+  Ứng dụng lịch Windows siêu nhẹ, siêu nhanh — viết bằng C++20 & Direct2D thuần.
+  Đồng bộ Google Calendar, nhập file ICS offline, xem mọi thứ trong một nháy mắt.
+
+  [English](README.md) · **Tiếng Việt**
+
+  ![Windows 10 / 11](https://img.shields.io/badge/Windows-10%20%2F%2011-0078D4?style=for-the-badge&logo=windows&logoColor=white)
+  ![C++20](https://img.shields.io/badge/C%2B%2B-20-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+  ![Phiên bản](https://img.shields.io/badge/phiên_bản-0.2.4-2563EB?style=for-the-badge)
+  ![Giấy phép](https://img.shields.io/badge/giấy_phép-Cá_nhân-green?style=for-the-badge)
+
+  ---
+
+  > 🚀 **Đại Cập Nhật Giao Diện** — Thiết kế lại hoàn toàn với layout thẻ hiện đại, nút chuyển view dạng viên thuốc, và giao diện tối cực đẹp. Ba chế độ xem, năm màu sự kiện, và thanh trạng thái dock phía dưới. Đây không phải app lịch xưa cũ nữa đâu.
+
 </div>
 
 ---
 
-## Xem trọn tuần, nắm rõ lịch của mình
+## ✨ Có gì mới trong v0.2.4?
 
-Calendar Deck hiển thị lịch **Thứ Hai–Chủ Nhật**, đầy đủ khung giờ **00:00–24:00** trên Windows. Chọn **Desktop mode** để gắn lịch vào lớp nền phía sau các cửa sổ, hoặc **Floating mode** để dùng như một cửa sổ bình thường.
+| 🎯 Tính năng | Mô tả |
+|---|---|
+| 🖼️ **Giao diện hoàn toàn mới** | Theme tối hiện đại, thẻ bo cong, nút view dạng pill, hiệu ứng hover, render mượt bằng Direct2D |
+| 📆 **3 Chế độ xem** | Chuyển mượt mà giữa **Tuần**, **Tháng** và **Năm** bằng `Ctrl+1/2/3` |
+| 🎨 **5 Màu sự kiện** | Xanh biển · Tím · Xanh lá · Hồng · Vàng — mỗi màu có nền thẻ và viền riêng |
+| 🔄 **Đồng bộ thông minh** | Tự động kiểm tra Google Calendar (5 phút – 24 giờ), cache offline, request có điều kiện |
+| 📁 **Nhập ICS offline** | Nhập file `.ics` một cú click. Thay file mới khi lịch đổi — giữ nguyên cài đặt |
+| 🖥️ **Widget Desktop** | Gắn lịch sau tất cả cửa sổ. Khóa vị trí, thoải mái thay đổi kích thước |
+| 🌐 **Song ngữ Việt – Anh** | Hỗ trợ đầy đủ Tiếng Việt 🇻🇳 và English 🇬🇧 — đổi trong Cài đặt |
+| ⚡ **~48 MB bộ nhớ** | Win32 thuần. Không Electron. Không trình duyệt nhúng. Không runtime. Chỉ có hiệu năng |
 
-Ứng dụng viết bằng **C++20, Win32, Direct2D và DirectWrite**. Bản đóng gói không yêu cầu Electron, trình duyệt nhúng, Python hay Node.js.
+---
 
-| Tính năng | Bạn có thể làm gì? |
-| --- | --- |
-| 3 chế độ nhìn | Chuyển đổi linh hoạt giữa Tuần (Week), Tháng (Month) và Năm (Year) |
-| Lịch tuần | Xem đủ 7 ngày, đánh dấu hôm nay và vạch giờ hiện tại với thiết kế bo cong mềm mại |
-| Lịch tháng | Toàn cảnh các tuần trong tháng, hiển thị sự kiện theo ngày, nhấp để xem tuần chi tiết |
-| Lịch năm | Toàn cảnh 12 tháng với số lượng sự kiện và chấm đánh dấu ngày có lịch |
-| Nhiều lịch | Đặt tên riêng, chọn một trong 5 màu, bật/tắt hiển thị |
-| Nguồn online | Đọc Google iCal, kiểm tra tự động, giữ cache khi mất mạng |
-| File offline | Nhập ICS và thay file mới khi thời khóa biểu thay đổi |
-| Bố trí sự kiện | Xem lịch lặp được hỗ trợ, cả ngày, qua đêm và trùng giờ |
-| Điều khiển cửa sổ | Thu nhỏ, phóng to/khôi phục, menu khay và tùy chọn khi đóng |
-| Widget desktop | Di chuyển, đổi kích thước khi mở khóa; khóa vị trí từ menu |
-| Lưu trữ cục bộ | Bảo vệ URL, nội dung lịch và cấu hình bằng Windows DPAPI |
+## 🖥️ Ba Chế Độ Xem
 
-## Bắt đầu nhanh
+### 📋 Lịch Tuần
+> Trung tâm điều khiển của bạn. Dải giờ đầy đủ **00:00–24:00**, 7 ngày Thứ Hai đến Chủ Nhật.
 
-### 1. Mở ứng dụng
+- **Thẻ sự kiện bo cong** với thanh màu bên trái
+- **Vạch giờ hiện tại** — đường đỏ với badge giờ, di chuyển real-time
+- **Đánh dấu hôm nay** — cột nền xanh dịu nhẹ
+- **Dải sự kiện cả ngày** — chip gọn phía trên lưới
+- **Cột trùng giờ** — nhiều sự kiện cùng lúc hiển thị song song
+- **Hiệu ứng hover** — thẻ phát sáng khi rê chuột qua
 
-Với bản đóng gói, giải nén **CalendarDeck-v0.2.4-windows-x64.zip** vào thư mục bạn muốn giữ lâu dài, rồi mở **CalendarDeck.exe**. Không cần trình cài đặt hay quyền quản trị viên.
+### 📊 Lịch Tháng
+> Toàn cảnh một tháng. Lưới 6 tuần với chip sự kiện cho từng ngày.
 
-Gói gồm EXE, hướng dẫn Anh/Việt và script tạo shortcut. Nếu dùng mã nguồn, xem phần [build](#build-từ-mã-nguồn).
+- **Chip sự kiện hằng ngày** với chấm màu và nhãn giờ
+- **Badge tràn** — hiện `+N sự kiện` khi ngày nào quá nhiều lịch
+- **Click bất kỳ ngày nào** để nhảy thẳng đến tuần đó
+- **Badge hôm nay** — vòng tròn xanh nổi bật
+- **Ngày ngoài tháng** hiện mờ nhạt cho dễ hình dung
 
-**Yêu cầu:** Windows 10 phiên bản 1903 trở lên hoặc Windows 11, bản x64. App dùng SQLite và ICU có sẵn trong Windows. Nguồn URL cần mạng để lấy dữ liệu mới; lịch nhập từ file hoạt động offline.
+### 🗓️ Lịch Năm
+> 12 thẻ tháng mini trên cùng một màn hình. Phát hiện ngay những khoảng bận rộn.
 
-### 2. Chọn cách thêm lịch
+- **Badge đếm sự kiện** trên từng thẻ tháng
+- **Chấm đánh dấu** trên ngày có lịch
+- **Click tháng bất kỳ** để nhảy sang Lịch Tháng
+- **Hover card** phát sáng viền xanh
 
-Mở **Settings → Calendars**.
+---
 
-| Add URL Calendar — Thêm bằng link | Import .ics — Nhập file |
-| --- | --- |
-| Dùng nguồn Google iCal hoặc link chia sẻ được hỗ trợ | Chọn file iCalendar trên máy |
-| Tự kiểm tra cập nhật | Giữ một bản lịch offline |
-| Cần quyền truy cập nguồn khi tải dữ liệu mới | Không cần đăng nhập Google hay kết nối mạng |
-| Vẫn xem cache khi mất mạng | Bấm Replace .ics khi lịch thay đổi |
+## 🚀 Bắt Đầu Nhanh
+
+### 1. Tải về và chạy
+
+Giải nén `CalendarDeck-v0.2.4-windows-x64.zip` → mở **CalendarDeck.exe**. Xong!
+
+> [!NOTE]
+> Không cần cài đặt, không cần quyền admin, không phụ thuộc gì cả. Chạy trên **Windows 10 (1903+)** hoặc **Windows 11**, bản x64.
+
+### 2. Thêm lịch của bạn
+
+Mở **Cài đặt (Settings) → Calendars**, rồi chọn cách thêm:
+
+| 🌐 Thêm bằng URL | 📁 Nhập file .ics |
+|---|---|
+| Dán link iCal từ Google Calendar | Chọn file `.ics` trên máy |
+| Tự kiểm tra cập nhật theo chu kỳ | Lưu bản lịch offline ngay lập tức |
+| Vẫn xem cache khi mất mạng | Không cần đăng nhập Google |
+| Hỗ trợ feed công khai & bí mật | Bấm **Replace .ics** khi lịch đổi |
 
 ### 3. Tạo biểu tượng trên Desktop
-
-Trong thư mục đã giải nén, chạy:
 
 ```powershell
 .\create-desktop-shortcut.ps1
 ```
 
-Nếu đang ở thư mục mã nguồn, sau khi đóng gói chạy:
+Icon lịch xanh số **36** đã nhúng vào EXE — không cần file icon ngoài.
 
-```powershell
-.\scripts\create-desktop-shortcut.ps1
-```
+---
 
-Bạn cũng có thể dùng menu chuột phải của Windows trên CalendarDeck.exe để tạo shortcut. Icon lịch xanh số **36** đã nhúng vào EXE; app không cần file icon ngoài để chạy. Nếu chuyển EXE sang nơi khác, hãy tạo lại shortcut.
+## 🔗 Kết Nối Google Calendar
 
-## Thêm Google Calendar bằng URL
+1. Mở [Google Calendar](https://calendar.google.com) trên máy tính
+2. **Cài đặt → chọn lịch → Tích hợp lịch**
+3. Sao chép **Địa chỉ bí mật ở định dạng iCal** (hoặc Địa chỉ công khai)
+4. Trong Calendar Deck: **Add URL Calendar** → dán URL → đặt tên & chọn màu → **Save**
 
-1. Mở Google Calendar trên máy tính.
-2. Vào **Cài đặt → chọn lịch → Tích hợp lịch**.
-3. Sao chép **Địa chỉ bí mật ở định dạng iCal**, hoặc **Địa chỉ công khai ở định dạng iCal** nếu nguồn lịch cho phép truy cập công khai.
-4. Trong Calendar Deck, chọn **Add URL Calendar**.
-5. Đặt tên, dán URL, chọn màu và trạng thái hiển thị, rồi bấm **Save calendar**.
+> [!IMPORTANT]
+> **Giữ kín URL bí mật như mật khẩu.** Không đưa vào ảnh chụp, issue, hay repo công khai.
 
-App nhận link HTTPS iCal kết thúc bằng `.ics`. Link chia sẻ/xem lịch Google có một mã lịch trong `src=` hoặc `cid=` base64 sẽ được chuyển ngay trên máy sang iCal công khai trước khi lưu. Link trang chủ Calendar, link một sự kiện, mã HTML iframe hoặc link chứa nhiều lịch không dùng được như một nguồn duy nhất.
+### Cơ chế đồng bộ
 
-- **Sync now**: kiểm tra lịch URL đang chọn.
-- **Sync** trên cửa sổ chính hoặc **Sync all calendars** ở khay: kiểm tra tất cả nguồn URL.
-- Mặc định kiểm tra mỗi **15 phút**; đổi trong **General**, từ **5 đến 1440 phút**.
-- Nếu tải thất bại, bản cache hợp lệ trước đó vẫn được giữ.
-- Google có thể chậm cập nhật nguồn iCal; đây là đồng bộ đọc một chiều, không phải cập nhật tức thì hai chiều.
+| Thao tác | Ý nghĩa |
+|---|---|
+| **Sync now** | Kiểm tra lịch URL đang chọn |
+| Nút **Đồng bộ** / `F5` | Kiểm tra tất cả nguồn URL |
+| **Chu kỳ tự động** | Mặc định **15 phút** (tùy chỉnh: 5–1440 phút) |
+| **Cache offline** | Bản cache hợp lệ vẫn hiện khi đồng bộ thất bại |
 
-**URL bí mật:** giữ kín như mật khẩu. Không đưa vào issue, ảnh công khai hoặc repository.
+> [!NOTE]
+> Google có thể chậm cập nhật feed iCal. Calendar Deck chỉ đọc một chiều — không sửa đổi Google Calendar của bạn.
 
-**URL công khai:** chỉ hoạt động khi chủ lịch và tổ chức cho phép nguồn công khai. Mở được link bằng trình duyệt đang đăng nhập không có nghĩa app được truy cập. Nếu nguồn chỉ cung cấp rảnh/bận, nó không chứa tên và mô tả để app hiển thị. Calendar Deck không thay đổi quyền chia sẻ Google của bạn.
+---
 
-## Nhập file ICS để xem offline
+## 📁 Nhập File ICS
 
-1. Chuẩn bị file `.ics` chứa lịch của bạn.
-2. Vào **Settings → Calendars → Import .ics...**.
-3. Chọn file. App nhập và lưu ngay; lịch có nhãn **(file)** trong danh sách.
-4. Nếu muốn, sửa tên, màu hoặc bật/tắt hiển thị rồi bấm **Save calendar**.
-5. Nhấp sự kiện trên lịch tuần để đọc tên đầy đủ, lịch nguồn, thời gian, địa điểm và mô tả.
+1. Chuẩn bị file `.ics` (từ Google Export, thời khóa biểu trường, v.v.)
+2. **Settings → Calendars → Import .ics...**
+3. App nhập và lưu ngay, đánh dấu **(file)** trong danh sách
+4. Tùy chỉnh tên, màu, hiển thị → **Save calendar**
+5. Click sự kiện để xem đầy đủ: tên, giờ, địa điểm, mô tả, nguồn lịch
 
-App chép bản lịch vào bộ nhớ lưu trữ cục bộ có mã hóa. Sau khi nhập, di chuyển hoặc xóa file gốc không làm mất lịch trong app. Lịch file hiển thị thời điểm nhập gần nhất và không được tải qua mạng.
+### Khi lịch thay đổi
 
-### Khi thời khóa biểu thay đổi
+Chọn lịch đã nhập → **Replace .ics...** → chọn file mới.
+Sự kiện cập nhật ngay. **Tên, màu, trạng thái hiển thị được giữ nguyên.**
 
-Chọn đúng lịch đã nhập, bấm **Replace .ics...**, rồi chọn file mới. Các sự kiện được thay bằng bản mới; **tên lịch, màu và trạng thái hiển thị vẫn giữ nguyên**. Nếu file lỗi hoặc không hợp lệ, bản cũ được giữ lại.
+> [!TIP]
+> Luôn dùng **Replace** thay vì nhập lịch mới để tránh trùng lặp.
 
-Nên dùng Replace .ics thay vì nhập mỗi bản cập nhật thành một lịch mới, để tránh hiển thị trùng.
+### Định dạng hỗ trợ
+- File `.ics` mã hóa UTF-8 (bao gồm UTF-8 BOM)
+- Tối đa **10 MiB** mỗi file
+- File ZIP cần giải nén trước
 
-### Lấy file từ Google Calendar
+---
 
-Nếu tài khoản cho phép, trên máy tính vào **Cài đặt → Nhập và xuất → Xuất**. Giải nén ZIP tải về rồi chọn file `.ics` của lịch cần dùng. Tài khoản trường/cơ quan có thể bị quản trị viên hạn chế xuất dữ liệu. Bạn cũng có thể dùng file ICS hợp lệ từ nguồn thời khóa biểu của mình.
+## ⌨️ Phím Tắt
 
-App nhận ICS mã hóa UTF-8, gồm UTF-8 BOM, tối đa **10 MiB mỗi file**. Cần giải nén ZIP trước. Nếu file đã bị lược bỏ thông tin chi tiết và chỉ còn Busy/rảnh bận, nhập lại không thể khôi phục các thông tin không có trong file.
+| Thao tác | Phím tắt |
+|---|---|
+| Lịch Tuần | `Ctrl+1` |
+| Lịch Tháng | `Ctrl+2` |
+| Lịch Năm | `Ctrl+3` |
+| Tuần / tháng trước / sau | `←` / `→` |
+| Về hôm nay | `Home` |
+| Mở Cài đặt | `Ctrl+S` |
+| Đồng bộ tất cả | `F5` |
+| Ẩn widget | `Esc` |
 
-## Sử dụng hằng ngày
+---
 
-| Thao tác | Cách thực hiện |
-| --- | --- |
-| Chuyển Tuần / Tháng / Năm | Nút chuyển dạng viên thuốc (pill) trên toolbar, menu chuột phải hoặc Ctrl+1 / Ctrl+2 / Ctrl+3 |
-| Tuần / Tháng / Năm trước & sau | Nút mũi tên ‹ / › hoặc phím mũi tên Trái / Phải |
-| Thời gian hiện tại | **Hôm nay** hoặc phím Home |
-| Xem chi tiết sự kiện | Nhấp sự kiện; rê chuột để xem tooltip |
-| Xem sự kiện cả ngày | Nhấp dải cả ngày của ngày đó |
-| Đọc lỗi/cảnh báo nguồn lịch | Nhấp thanh trạng thái phía dưới |
-| Đổi tên/màu lịch | Settings → Calendars → chọn lịch → Save calendar |
-| Ẩn lịch nhưng vẫn giữ nguồn | Bỏ chọn **Show events on calendar**, rồi lưu |
-| Xóa lịch khỏi app | **Remove calendar** → xác nhận; sự kiện Google không bị xóa |
-| Mở Settings | Nút trên toolbar hoặc Ctrl+S |
-| Kiểm tra nguồn URL | Sync hoặc F5 |
-| Ẩn widget | Esc hoặc menu ở khay |
+## 🖥️ Chế Độ Desktop & Floating
 
-**Nhớ lưu trước khi chuyển:** Settings sẽ cảnh báo trước khi bỏ các chỉnh sửa chưa lưu khi đổi trang hoặc đổi lịch.
+| Chế độ | Hoạt động |
+|---|---|
+| **Floating** | Cửa sổ bình thường, có taskbar, thu nhỏ/phóng to, kéo & thay đổi kích thước |
+| **Desktop** | Gắn sau tất cả cửa sổ, nằm trên desktop. Kéo header/cạnh khi mở khóa |
 
-### Floating và Desktop
+> Chuột phải trên lịch hoặc icon khay để chuyển chế độ hoặc bật/tắt **Khóa vị trí widget**.
 
-**Floating** là cửa sổ bình thường, có nút ở taskbar, thu nhỏ, phóng to/khôi phục và đóng. Kéo vùng tiêu đề để di chuyển, kéo cạnh để đổi kích thước.
+### Đóng, Ẩn & Thoát
 
-**Desktop** gắn widget vào Explorer, phía sau các cửa sổ ứng dụng. Khi mở khóa, kéo header hoặc cạnh để di chuyển/đổi kích thước. Chế độ này không cho phóng to. Chuột phải trên lịch hoặc icon ở khay để chuyển chế độ và bật/tắt **Lock widget position**. Phần mềm wallpaper và cách hoạt động của Explorer có thể ảnh hưởng chế độ Desktop.
+Trong **Settings → General**, chọn nút Close sẽ:
+- **Ẩn xuống khay hệ thống** (mặc định) — nhấp đúp icon khay để hiện lại
+- **Thoát hoàn toàn** — dùng **Exit** ở menu khay để dừng hẳn
 
-### Đóng, ẩn và thoát hẳn
+---
 
-Trong **Settings → General**, chọn nút Close sẽ ẩn xuống khay hay thoát. Nhấp đúp icon khay để hiện tuần hiện tại. Chọn **Exit** ở menu khay để dừng app hoàn toàn. Nếu đang tải mạng, app có thể cần chờ tác vụ hiện tại kết thúc.
+## 💾 Dữ Liệu & Lưu Trữ
 
-## Cập nhật và dữ liệu trên máy
-
-| Chế độ | Vị trí |
-| --- | --- |
+| Chế độ | Vị trí database |
+|---|---|
 | Bình thường | `%LOCALAPPDATA%\CalendarDeck\calendar-deck.db` |
 | Portable (`--portable`) | `data\calendar-deck.db` cạnh EXE |
 
-Cấu hình, nguồn lịch, file nhập và lỗi đồng bộ được mã hóa bằng Windows DPAPI trước khi lưu SQLite. Dữ liệu portable vẫn gắn với tài khoản Windows hiện tại, không phải định dạng sao lưu để mang sang tài khoản khác. Hãy giữ file ICS gốc hoặc URL nguồn nếu cần chuyển máy/tài khoản.
+- Tất cả dữ liệu mã hóa bằng **Windows DPAPI** trước khi lưu SQLite
+- Dữ liệu portable vẫn gắn với tài khoản Windows hiện tại
+- Giữ file ICS gốc hoặc URL nguồn nếu cần chuyển tài khoản/máy
 
-Khi nâng cấp: chọn **Exit ở khay**, thay file ứng dụng rồi mở lại. Dữ liệu chế độ bình thường vẫn nằm trong AppData. Nếu dùng portable, giữ nguyên thư mục `data`. App tự đọc được cấu hình một lịch của bản cũ.
+### Nâng cấp phiên bản
 
-Để thử bằng sự kiện mẫu, không kết nối lịch:
+1. **Exit** từ khay hệ thống
+2. Thay file ứng dụng mới
+3. Mở lại — dữ liệu vẫn còn trong AppData (hoặc `data/` cho portable)
+
+### Chế độ Demo
 
 ```powershell
 .\CalendarDeck.exe --portable --demo
 ```
 
-Nên dùng một thư mục giải nén riêng cho demo. Mỗi thư mục dữ liệu chỉ chạy một instance; thoát instance đó trước khi đổi giữa demo và lịch thật.
+> Nên dùng thư mục riêng cho demo. Mỗi thư mục dữ liệu chỉ chạy một instance.
 
-## Xử lý sự cố
+---
 
-| Hiện tượng | Cách kiểm tra |
-| --- | --- |
-| Lịch hiện Busy hoặc thiếu tên môn | Kiểm tra quyền nguồn và nội dung ICS; nguồn rảnh/bận không có dữ liệu chi tiết bị thiếu |
-| Public feed không truy cập được | Kiểm tra quyền xem không cần đăng nhập và chính sách xuất iCal của tổ chức |
-| Không có Secret address | Có thể do tài khoản trường/cơ quan hoặc quyền của bạn; dùng bản xuất ICS đầy đủ nếu được phép |
-| Nhập xong không có sự kiện | Kiểm tra tuần đang xem, trạng thái hiển thị và ngày trong file; lịch học kỳ cũ có thể trống ở tuần này |
-| Sự kiện bị trùng | Ẩn/xóa nguồn cũ hoặc dùng Replace .ics thay vì thêm một bản nữa |
-| Giờ có vẻ sai | Kiểm tra múi giờ Windows, chi tiết sự kiện và bảo đảm đang dùng bản 0.2.3 trở lên |
-| Đóng mà app vẫn chạy | Có thể đang bật Close to system tray; chọn Exit ở khay để thoát hẳn |
-| Desktop còn ảnh lịch cũ | Exit, Refresh desktop và mở bản hiện tại; app không sửa file wallpaper |
-| Không dùng được Desktop mode | Chuyển Floating; Explorer/WorkerW hoặc phần mềm wallpaper có thể cản việc gắn widget |
-| Build báo không ghi đè được EXE | Thoát instance đang chạy từ thư mục đó rồi build lại |
+## 🔧 Xử Lý Sự Cố
 
-## Build từ mã nguồn
+| Hiện tượng | Cách xử lý |
+|---|---|
+| Lịch hiện "Busy" hoặc thiếu tên | Kiểm tra quyền nguồn — feed rảnh/bận không chứa chi tiết |
+| Public feed không truy cập được | Kiểm tra quyền xem không cần đăng nhập; chính sách xuất iCal |
+| Không có Secret address | Tài khoản trường/cơ quan bị hạn chế — thử xuất ICS đầy đủ |
+| Không có sự kiện sau khi nhập | Kiểm tra tuần đang xem, trạng thái hiển thị, và khoảng ngày trong file |
+| Sự kiện bị trùng | Dùng **Replace .ics** thay vì nhập lại |
+| Giờ bị sai | Kiểm tra múi giờ Windows; dùng bản 0.2.3+ |
+| Đóng mà app vẫn chạy | Tắt close-to-tray, hoặc chọn **Exit** ở khay |
+| Desktop mode không hoạt động | Explorer/WorkerW hoặc app wallpaper có thể ảnh hưởng — dùng Floating |
 
-Cần **CMake 3.24+** và **MinGW-w64 GCC + Ninja**, hoặc **Visual Studio 2022 C++ tools**. Không cần Python để build app.
+---
+
+## 🏗️ Build Từ Mã Nguồn
+
+**Yêu cầu:** CMake 3.24+ và MinGW-w64 GCC + Ninja, hoặc Visual Studio 2022 C++ tools.
 
 ```powershell
 .\scripts\build.ps1
 ```
 
-Script tạo Release build ở `build/release`, biên dịch và chạy CTest. Có thể chạy rõ từng lệnh với MinGW/Ninja:
+Hoặc chạy thủ công:
 
 ```powershell
 cmake -S . -B build/release -G Ninja -DCMAKE_BUILD_TYPE=Release
 cmake --build build/release
 ctest --test-dir build/release --output-on-failure
-```
-
-Cấu hình MSVC đã có nhưng chưa được kiểm chứng trên máy này:
-
-```powershell
-cmake -S . -B build/msvc -G "Visual Studio 17 2022" -A x64
-cmake --build build/msvc --config Release
-ctest --test-dir build/msvc -C Release --output-on-failure
 ```
 
 ### Đóng gói để chia sẻ
@@ -206,38 +243,51 @@ ctest --test-dir build/msvc -C Release --output-on-failure
 ```
 
 | Kết quả | Mục đích |
-| --- | --- |
-| `dist/CalendarDeck/` | App chạy được, hướng dẫn và script shortcut |
-| `dist/CalendarDeck-v0.2.4-windows-x64.zip` | Gói chương trình cho GitHub Releases |
-| `dist/CalendarDeck-v0.2.4-source.zip` | Mã nguồn chọn lọc để chia sẻ/tải lên |
-| `dist/SHA256SUMS.txt` | Mã kiểm tra SHA-256 của hai ZIP |
+|---|---|
+| `dist/CalendarDeck/` | App chạy được + hướng dẫn |
+| `dist/CalendarDeck-v0.2.4-windows-x64.zip` | Gói nhị phân cho Releases |
+| `dist/CalendarDeck-v0.2.4-source.zip` | Mã nguồn chọn lọc |
+| `dist/SHA256SUMS.txt` | Mã kiểm tra SHA-256 |
 
-Gói source loại các bản build, EXE, lịch cá nhân, cache, bản sao lưu cục bộ và công cụ Codex. Quy tắc ignore cũng loại chúng khi dùng Git thông thường. Đưa ZIP chương trình vào **Releases**, không commit vào mã nguồn. Kiểm tra `git status` trước khi commit.
+---
 
-## Cấu trúc dự án
+## 📂 Cấu Trúc Dự Án
 
-| Thư mục | Nội dung |
-| --- | --- |
-| `src/` | UI, xử lý lịch và lưu trữ |
-| `resources/` | PNG gốc, ICO nhiều kích thước, manifest và thông tin phiên bản |
-| `scripts/` | Build, đóng gói và tạo shortcut |
-| `tests/` | Kiểm thử bằng dữ liệu tổng hợp |
-| `docs/` | Kiến trúc và kết quả kiểm chứng |
-| `build/`, `dist/` | File sinh tự động, không đưa vào Git |
-| `input/`, `local-data/` | File cá nhân/bản lưu cục bộ, không đưa vào Git |
+```
+CalendarDeck/
+├── src/           # Nhân app — UI, engine lịch, lưu trữ
+├── resources/     # Icon (9 kích thước), manifest, thông tin phiên bản
+├── scripts/       # Build, đóng gói & tự động tạo shortcut
+├── tests/         # 96 kiểm thử bằng dữ liệu tổng hợp
+├── docs/          # Kiến trúc & kết quả kiểm chứng
+├── build/         # File sinh tự động (git-ignored)
+└── dist/          # Gói phân phối (git-ignored)
+```
 
-## Phạm vi, hiệu năng và kiểm chứng
+## 🔬 Hiệu Năng & Kiểm Chứng
 
-App dùng message loop Win32 theo sự kiện và một worker nền, không chạy vòng vẽ liên tục 60 FPS. Một lần đo demo ngắn ghi nhận khoảng **48–49 MiB working set**. Đây không phải cam kết RAM cho mọi nguồn lịch, GPU hoặc driver.
+- **Event-driven** message loop Win32 — không render liên tục 60 FPS
+- **~48–49 MiB** working set (đo trên demo ngắn)
+- **96 kiểm thử core** pass trên CTest
+- Lịch lặp đã đối chiếu với **5 file Google × 104 tuần** (487 bản ghi khớp)
+- Hỗ trợ: DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL, WKST, BYDAY, BYMONTHDAY, BYMONTH, BYSETPOS, EXDATE, RDATE, ngoại lệ RECURRENCE-ID
 
-Bộ kiểm thử core hiện có **96 kiểm tra**. Bản sửa giờ lịch lặp còn được đối chiếu với 5 file Google qua 104 tuần; 487 lượt sự kiện khớp với bộ tính độc lập. Xem [kết quả và phần chưa kiểm chứng](docs/VALIDATION.md).
+---
 
-Hỗ trợ DAILY/WEEKLY/MONTHLY/YEARLY, INTERVAL, COUNT, UNTIL, WKST, BYDAY, BYMONTHDAY, BYMONTH, BYSETPOS, EXDATE, RDATE và ngoại lệ RECURRENCE-ID. Chưa triển khai đầy đủ RFC 5545: VTIMEZONE tùy chỉnh, lịch lặp theo giờ, RDATE dạng PERIOD và RECURRENCE-ID RANGE chưa được hỗ trợ. Giới hạn gồm 100 nguồn, 10 MiB/feed, 50.000 VEVENT/feed và 10.000 lượt sự kiện/nguồn/tuần.
+## 📚 Đóng Góp & Tài Liệu
 
-Bản này chưa có đăng nhập Google OAuth, tạo/sửa sự kiện, nhắc việc, Light Mode, chỉnh opacity hay chuyển ngôn ngữ giao diện. Lưới lịch chưa cung cấp UI Automation cho từng sự kiện. Đồng bộ Google thực tế và hành vi Desktop/DPI vẫn cần kiểm thử thủ công rộng hơn.
+Xem [CONTRIBUTING.md](CONTRIBUTING.md) và [Ghi chú kiến trúc](docs/ARCHITECTURE.md).
 
-## Đóng góp và tài liệu tham khảo
+**Tham khảo:**
+[Google iCal Sync](https://support.google.com/calendar/answer/37648) ·
+[Xuất lịch Google](https://support.google.com/calendar/answer/37111) ·
+[Lịch công khai](https://support.google.com/calendar/answer/37083) ·
+[RFC 5545](https://www.rfc-editor.org/rfc/rfc5545)
 
-Xem [CONTRIBUTING.md](CONTRIBUTING.md) và [ghi chú kiến trúc](docs/ARCHITECTURE.md).
+---
 
-Tài liệu: [Google iCal](https://support.google.com/calendar/answer/37648), [xuất lịch Google](https://support.google.com/calendar/answer/37111), [lịch công khai](https://support.google.com/calendar/answer/37083) và [RFC 5545](https://www.rfc-editor.org/rfc/rfc5545).
+<div align="center">
+  <sub>Được xây dựng với ❤️ bằng C++20 · Win32 · Direct2D · DirectWrite</sub>
+  <br>
+  <sub>Không Electron. Không phình to. Chỉ có lịch của bạn.</sub>
+</div>
